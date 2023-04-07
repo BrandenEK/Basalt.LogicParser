@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace LogicParser
 {
-    public static class LogicParser
+    public static class Parser
     {
         public static bool EvaluateExpression(string expression, InventoryData inventory)
         {
