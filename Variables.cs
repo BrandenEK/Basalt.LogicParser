@@ -2,7 +2,7 @@
 
 namespace LogicParser
 {
-    internal class IntVariable : Variable
+    public class IntVariable : Variable
     {
         public int value;
 
@@ -12,7 +12,7 @@ namespace LogicParser
         }
     }
 
-    internal class BoolVariable : Variable
+    public class BoolVariable : Variable
     {
         public bool value;
 

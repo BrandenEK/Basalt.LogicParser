@@ -2,7 +2,7 @@
 
 namespace LogicParser
 {
-    internal class LeftParenthesisOperator : Operator
+    public class LeftParenthesisOperator : Operator
     {
         public override string Name => "(";
 
@@ -10,11 +10,11 @@ namespace LogicParser
 
         public override bool Evaluate(Variable left, Variable right)
         {
-            throw new NotImplementedException();
+            throw new LogicParserException("Can not evaluate a prenthesis token!");
         }
     }
 
-    internal class RightParenthesisOperator : Operator
+    public class RightParenthesisOperator : Operator
     {
         public override string Name => ")";
 
@@ -22,11 +22,11 @@ namespace LogicParser
 
         public override bool Evaluate(Variable left, Variable right)
         {
-            throw new NotImplementedException();
+            throw new LogicParserException("Can not evaluate a prenthesis token!");
         }
     }
 
-    internal class AndOperator : Operator
+    public class AndOperator : Operator
     {
         public override string Name => "&&";
 
@@ -38,7 +38,7 @@ namespace LogicParser
         }
     }
 
-    internal class OrOperator : Operator
+    public class OrOperator : Operator
     {
         public override string Name => "||";
 
@@ -50,7 +50,7 @@ namespace LogicParser
         }
     }
 
-    internal class LessOperator : Operator
+    public class LessOperator : Operator
     {
         public override string Name => "<";
 
@@ -62,7 +62,7 @@ namespace LogicParser
         }
     }
 
-    internal class GreaterOperator : Operator
+    public class GreaterOperator : Operator
     {
         public override string Name => ">";
 
@@ -74,7 +74,7 @@ namespace LogicParser
         }
     }
 
-    internal class LessEqualOperator : Operator
+    public class LessEqualOperator : Operator
     {
         public override string Name => "<=";
 
@@ -86,7 +86,7 @@ namespace LogicParser
         }
     }
 
-    internal class GreaterEqualOperator : Operator
+    public class GreaterEqualOperator : Operator
     {
         public override string Name => ">=";
 
@@ -98,7 +98,7 @@ namespace LogicParser
         }
     }
 
-    internal class BitfieldOperator : Operator
+    public class BitfieldOperator : Operator
     {
         public override string Name => "^";
 

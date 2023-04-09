@@ -2,17 +2,17 @@
 
 namespace LogicParser
 {
-    internal abstract class Token
+    public abstract class Token
     {
 
     }
 
-    internal abstract class Variable : Token
+    public abstract class Variable : Token
     {
 
     }
 
-    internal abstract class Operator : Token
+    public abstract class Operator : Token
     {
         public abstract string Name { get; }
         public abstract byte Order { get; }

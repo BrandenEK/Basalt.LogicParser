@@ -32,11 +32,7 @@ namespace LogicParser
 
             foreach (string token in expressionSplit)
             {
-                if (inventory.IsVariable(token, out Variable var)) // Game variable
-                {
-                    tokens.Add(var);
-                }
-                else if (int.TryParse(token, out int num)) // Decimal number
+                if (int.TryParse(token, out int num)) // Decimal number
                 {
                     tokens.Add(new IntVariable(num));
                 }
@@ -73,8 +69,10 @@ namespace LogicParser
                         operators.Push(op);
                     }
                 }
-                else // Unknown token
-                    throw new LogicParserException($"Unknown token '{token}' for expression: " + expression);
+                else // Assume a game variable
+                {
+                    tokens.Add(inventory.GetVariable(token));
+                }
             }
 
             // Add remaining operators
@@ -109,6 +107,12 @@ namespace LogicParser
                 throw new LogicParserException("Order of operations was incorrect for expression: " + expression);
 
             return (stack.Pop() as BoolVariable).value;
+        }
+
+        public static void RegisterOperator(Operator op)
+        {
+            if (!allOperators.ContainsKey(op.Name))
+                allOperators.Add(op.Name, op);
         }
 
         private static Dictionary<string, Operator> allOperators = new Dictionary<string, Operator>()
