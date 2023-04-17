@@ -32,7 +32,11 @@ namespace LogicParser
 
             foreach (string token in expressionSplit)
             {
-                if (int.TryParse(token, out int num)) // Decimal number
+                if (token == string.Empty) // Extra space
+                {
+                    throw new LogicParserException("Extra space for expression: " + expression);
+                }
+                else if (int.TryParse(token, out int num)) // Decimal number
                 {
                     tokens.Add(new IntVariable(num));
                 }
