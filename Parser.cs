@@ -7,6 +7,12 @@ namespace LogicParser
     {
         public static bool EvaluateExpression(string expression, InventoryData inventory)
         {
+            // If nothing, then its true
+            if (expression == null || expression == string.Empty)
+            {
+                return true;
+            }
+
             // Add padding around parenthesis if not already present
             for (int i = 0; i < expression.Length; i++)
             {
