@@ -6,6 +6,12 @@ namespace LogicParser
     {
         private static readonly Dictionary<string, Operator> _allOperators;
 
+        // Fake testing method
+        public static bool Evaluate(InventoryData inventory, string expression)
+        {
+            return ((BoolVariable)inventory.GetVariableValue(expression)).value;
+        }
+
         static LogicParser()
         {
             var leftParenthesis = new LeftParenthesisOperator();

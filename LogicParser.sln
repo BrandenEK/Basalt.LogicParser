@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicParser", "LogicParser\LogicParser.csproj", "{1BECCE91-1F6F-4F22-8370-6ED4E79034CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LogicParser", "LogicParser\LogicParser.csproj", "{1BECCE91-1F6F-4F22-8370-6ED4E79034CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicParser.Tests", "LogicParser.Tests\LogicParser.Tests.csproj", "{F19CCD7C-135A-415E-9FC4-B433A1065660}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{1BECCE91-1F6F-4F22-8370-6ED4E79034CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BECCE91-1F6F-4F22-8370-6ED4E79034CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BECCE91-1F6F-4F22-8370-6ED4E79034CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F19CCD7C-135A-415E-9FC4-B433A1065660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F19CCD7C-135A-415E-9FC4-B433A1065660}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F19CCD7C-135A-415E-9FC4-B433A1065660}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F19CCD7C-135A-415E-9FC4-B433A1065660}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
