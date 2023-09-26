@@ -4,11 +4,33 @@ namespace LogicParser.Tests
     internal class TestInventory : InventoryData
     {
         private bool item1 = false;
-        private bool item2 = true;
-        private bool item3 = true;
+        private bool item2 = false;
+        private bool item3 = false;
 
         private int numbers1 = 0;
-        private int numbers2 = 5;
+        private int numbers2 = 0;
+
+        public void AddItem(string item)
+        {
+            switch (item)
+            {
+                case "item1":
+                    item1 = true;
+                    break;
+                case "item2":
+                    item2 = true;
+                    break;
+                case "item3":
+                    item3 = true;
+                    break;
+                case "numbers1":
+                    numbers1++;
+                    break;
+                case "numbers2":
+                    numbers2++;
+                    break;
+            }
+        }
 
         protected override object GetVariable(string variable)
         {
