@@ -7,12 +7,10 @@ namespace LogicParser
 
     internal abstract class Operator : Token
     {
-        public readonly string name; // Maybe not necessary
         public readonly byte order;
 
-        public Operator(string name, byte order)
+        public Operator(byte order)
         {
-            this.name = name;
             this.order = order;
         }
 

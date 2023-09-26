@@ -3,7 +3,7 @@ namespace LogicParser
 {
     internal class LeftParenthesisOperator : Operator
     {
-        public LeftParenthesisOperator() : base("(", 0) { }
+        public LeftParenthesisOperator() : base(0) { }
 
         public override bool Evaluate(Variable left, Variable right)
         {
@@ -13,7 +13,7 @@ namespace LogicParser
 
     internal class RightParenthesisOperator : Operator
     {
-        public RightParenthesisOperator() : base(")", 0) { }
+        public RightParenthesisOperator() : base(0) { }
 
         public override bool Evaluate(Variable left, Variable right)
         {
@@ -23,7 +23,7 @@ namespace LogicParser
 
     internal class AndOperator : Operator
     {
-        public AndOperator() : base("+", 1) { }
+        public AndOperator() : base(1) { }
 
         public override bool Evaluate(Variable left, Variable right)
         {
@@ -33,7 +33,7 @@ namespace LogicParser
 
     internal class OrOperator : Operator
     {
-        public OrOperator() : base("|", 2) { }
+        public OrOperator() : base(2) { }
 
         public override bool Evaluate(Variable left, Variable right)
         {
@@ -43,7 +43,7 @@ namespace LogicParser
 
     internal class LessOperator : Operator
     {
-        public LessOperator() : base("<", 0) { }
+        public LessOperator() : base(0) { }
 
         public override bool Evaluate(Variable left, Variable right)
         {
@@ -53,7 +53,7 @@ namespace LogicParser
 
     internal class GreaterOperator : Operator
     {
-        public GreaterOperator() : base(">", 0) { }
+        public GreaterOperator() : base(0) { }
 
         public override bool Evaluate(Variable left, Variable right)
         {
@@ -63,7 +63,7 @@ namespace LogicParser
 
     internal class LessEqualOperator : Operator
     {
-        public LessEqualOperator() : base("<=", 0) { }
+        public LessEqualOperator() : base(0) { }
 
         public override bool Evaluate(Variable left, Variable right)
         {
@@ -73,7 +73,7 @@ namespace LogicParser
 
     internal class GreaterEqualOperator : Operator
     {
-        public GreaterEqualOperator() : base(">=", 0) { }
+        public GreaterEqualOperator() : base(0) { }
 
         public override bool Evaluate(Variable left, Variable right)
         {
