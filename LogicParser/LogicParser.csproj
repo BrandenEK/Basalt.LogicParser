@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFrameworks>net35;net6.0</TargetFrameworks>
+
+    <Product>Logic Parser</Product>
+    <Description>Logic parser and evaluater for use with randomizers</Description>
+    <Company>Damocles</Company>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
 </Project>
