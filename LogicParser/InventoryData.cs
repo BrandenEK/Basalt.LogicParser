@@ -139,7 +139,7 @@ namespace LogicParser
             // Right parenthesis
             if (op is RightParenthesisOperator)
             {
-                while (operators.Count > 0 && operators.Peek() is not LeftParenthesisOperator)
+                while (operators.Count > 0 && !(operators.Peek() is LeftParenthesisOperator))
                 {
                     tokens.Add(operators.Pop());
                 }
@@ -151,7 +151,7 @@ namespace LogicParser
             }
 
             // Regular operator
-            while (operators.Count > 0 && operators.Peek() is not LeftParenthesisOperator && operators.Peek().order <= op.order)
+            while (operators.Count > 0 && !(operators.Peek() is LeftParenthesisOperator) && operators.Peek().order <= op.order)
             {
                 tokens.Add(operators.Pop());
             }
@@ -169,12 +169,20 @@ namespace LogicParser
                 {
                     if (i > 0 && expression[i - 1] != ' ')
                     {
+#if NET35
+                        expression = expression.Substring(0, i) + ' ' + expression.Substring(i);
+#elif NET6_0_OR_GREATER
                         expression = string.Concat(expression.AsSpan(0, i), " ", expression.AsSpan(i));
+#endif
                         i++;
                     }
                     if (i < expression.Length - 1 && expression[i + 1] != ' ')
                     {
+#if NET35
+                        expression = expression.Substring(0, i + 1) + ' ' + expression.Substring(i + 1);
+#elif NET6_0_OR_GREATER
                         expression = string.Concat(expression.AsSpan(0, i + 1), " ", expression.AsSpan(i + 1));
+#endif
                         i++;
                     }
                 }
@@ -194,12 +202,12 @@ namespace LogicParser
         private Variable GetVariableValue(string variable)
         {
             object value = GetVariable(variable);
-            return value switch
+            switch (value)
             {
-                bool b => new BoolVariable(b),
-                int i => new IntVariable(i),
-                _ => throw new LogicParserException($"Unsupported variable type: {value.GetType().Name}"),
-            };
+                case bool b: return new BoolVariable(b);
+                case int i: return new IntVariable(i);
+                default: throw new LogicParserException($"Unsupported variable type: {value.GetType().Name}");
+            }
         }
 
         /// <summary>
