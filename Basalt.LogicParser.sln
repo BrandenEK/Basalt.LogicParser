@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34408.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basalt.LogicParser", "Basalt.LogicParser\Basalt.LogicParser.csproj", "{ABB8866B-9897-4BC8-AF1F-E9F7003959C0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basalt.LogicParser.Tests", "Basalt.LogicParser.Tests\Basalt.LogicParser.Tests.csproj", "{3D3191D2-E6A9-4496-A570-F75A3ACD8DCE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABB8866B-9897-4BC8-AF1F-E9F7003959C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABB8866B-9897-4BC8-AF1F-E9F7003959C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABB8866B-9897-4BC8-AF1F-E9F7003959C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABB8866B-9897-4BC8-AF1F-E9F7003959C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D3191D2-E6A9-4496-A570-F75A3ACD8DCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D3191D2-E6A9-4496-A570-F75A3ACD8DCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D3191D2-E6A9-4496-A570-F75A3ACD8DCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D3191D2-E6A9-4496-A570-F75A3ACD8DCE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33E4C82A-1C72-4F20-84C6-F6FDD6E940A9}
+	EndGlobalSection
+EndGlobal

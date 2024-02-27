@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LogicParser
+namespace Basalt.LogicParser
 {
     public abstract class InventoryData
     {

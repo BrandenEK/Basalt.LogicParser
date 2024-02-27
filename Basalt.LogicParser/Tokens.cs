@@ -1,5 +1,5 @@
 ﻿
-namespace LogicParser
+namespace Basalt.LogicParser
 {
     internal abstract class Token { }
 
