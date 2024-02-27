@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LogicParser
+namespace Basalt.LogicParser
 {
     public class LogicParserException : Exception
     {

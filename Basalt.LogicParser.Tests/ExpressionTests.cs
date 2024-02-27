@@ -1,4 +1,5 @@
-namespace LogicParser.Tests
+
+namespace Basalt.LogicParser.Tests
 {
     [TestClass]
     public class ExpressionTests

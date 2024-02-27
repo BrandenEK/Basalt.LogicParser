@@ -1,5 +1,5 @@
 ﻿
-namespace LogicParser.Tests
+namespace Basalt.LogicParser.Tests
 {
     internal class TestInventory : InventoryData
     {
