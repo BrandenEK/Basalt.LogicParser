@@ -1,9 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <TargetFrameworks>net35;net6.0</TargetFrameworks>
+
+    <Title>Logic Parser</Title>
+    <Authors>Damocles</Authors>
+    <Description>Logic parser and evaluater for use with randomizers</Description>
+    <Version>1.1.0</Version>
+
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <RepositoryUrl>https://github.com/BrandenEK/Basalt.LogicParser</RepositoryUrl>
   </PropertyGroup>
 
 </Project>

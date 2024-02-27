@@ -1,50 +1,49 @@
 ﻿
-namespace Basalt.LogicParser.Tests
+namespace Basalt.LogicParser.Tests;
+
+internal class TestInventory : InventoryData
 {
-    internal class TestInventory : InventoryData
+    private bool item1 = false;
+    private bool item2 = false;
+    private bool item3 = false;
+
+    private int numbers1 = 0;
+    private int numbers2 = 0;
+
+    public void AddItem(string item)
     {
-        private bool item1 = false;
-        private bool item2 = false;
-        private bool item3 = false;
-
-        private int numbers1 = 0;
-        private int numbers2 = 0;
-
-        public void AddItem(string item)
+        switch (item)
         {
-            switch (item)
-            {
-                case "item1":
-                    item1 = true;
-                    break;
-                case "item2":
-                    item2 = true;
-                    break;
-                case "item3":
-                    item3 = true;
-                    break;
-                case "numbers1":
-                    numbers1++;
-                    break;
-                case "numbers2":
-                    numbers2++;
-                    break;
-            }
+            case "item1":
+                item1 = true;
+                break;
+            case "item2":
+                item2 = true;
+                break;
+            case "item3":
+                item3 = true;
+                break;
+            case "numbers1":
+                numbers1++;
+                break;
+            case "numbers2":
+                numbers2++;
+                break;
         }
+    }
 
-        protected override object GetVariable(string variable)
+    protected override object GetVariable(string variable)
+    {
+        return variable switch
         {
-            return variable switch
-            {
-                "item1" => item1,
-                "item2" => item2,
-                "item3" => item3,
+            "item1" => item1,
+            "item2" => item2,
+            "item3" => item3,
 
-                "numbers1" => numbers1,
-                "numbers2" => numbers2,
+            "numbers1" => numbers1,
+            "numbers2" => numbers2,
 
-                _ => throw new LogicParserException($"Unknown variable: {variable}")
-            };
-        }
+            _ => throw new LogicParserException($"Unknown variable: {variable}")
+        };
     }
 }
