@@ -21,14 +21,14 @@ public class StandardParser(IResolver resolver) : IParser
         // Calculate each token in the split string and add it to the list of tokens
         foreach (string token in expression.Split(' '))
         {
-            CalculateToken(expression, token, tokens, operators);
+            CalculateToken(token, tokens, operators);
         }
 
         // Add remaining operators
         while (operators.Count > 0)
         {
             if (operators.Peek() is LeftParenthesisOperator)
-                throw new LogicParserException("Incorrect number of parentheses for expression: " + expression);
+                throw new LogicParserException("Incorrect number of parentheses");
 
             tokens.Add(operators.Pop());
         }
@@ -39,12 +39,12 @@ public class StandardParser(IResolver resolver) : IParser
     /// <summary>
     /// Processes the token as a string and converts it into either a variable or an operator
     /// </summary>
-    private void CalculateToken(string expression, string token, List<Token> tokens, Stack<Operator> operators)
+    private void CalculateToken(string token, List<Token> tokens, Stack<Operator> operators)
     {
         // Extra empty space is not allowed
         if (token == string.Empty)
         {
-            throw new LogicParserException("Extra space for expression: " + expression);
+            throw new LogicParserException("Extra whitespace");
         }
 
         // Regular integer number
@@ -57,7 +57,7 @@ public class StandardParser(IResolver resolver) : IParser
         // Registered operator
         if (Operator.All.ContainsKey(token))
         {
-            CalculateOperator(expression, token, tokens, operators);
+            CalculateOperator(token, tokens, operators);
             return;
         }
 
@@ -68,7 +68,7 @@ public class StandardParser(IResolver resolver) : IParser
     /// <summary>
     /// When parsing the expression and encountered an operator, perform logic to move tokens around
     /// </summary>
-    private void CalculateOperator(string expression, string token, List<Token> tokens, Stack<Operator> operators)
+    private void CalculateOperator(string token, List<Token> tokens, Stack<Operator> operators)
     {
         Operator op = Operator.All[token];
 
@@ -87,7 +87,7 @@ public class StandardParser(IResolver resolver) : IParser
                 tokens.Add(operators.Pop());
             }
             if (operators.Count == 0)
-                throw new LogicParserException("Incorrect number of parentheses for expression: " + expression);
+                throw new LogicParserException("Incorrect number of parentheses");
 
             operators.Pop();
             return;

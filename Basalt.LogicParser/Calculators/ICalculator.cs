@@ -11,5 +11,5 @@ public interface ICalculator
     /// <summary>
     /// Calculates a boolean result from a collection of tokens
     /// </summary>
-    public bool Calculate(string expression, IEnumerable<Token> tokens);
+    public bool Calculate(IEnumerable<Token> tokens);
 }

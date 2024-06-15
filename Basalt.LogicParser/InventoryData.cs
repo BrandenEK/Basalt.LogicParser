@@ -22,7 +22,8 @@ public abstract class InventoryData
         IParser parser = new StandardParser(resolver);
         ICalculator calculator = new StandardCalculator();
 
-        return calculator.Calculate(expression, parser.Parse(expression));
+        LogicParserException.CurrentExpression = expression;
+        return calculator.Calculate(parser.Parse(expression));
     }
 
     /// <summary>

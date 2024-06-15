@@ -16,7 +16,7 @@ public class StandardResolver(InventoryData inventory) : IResolver
         {
             bool b => new BoolVariable(b),
             int i => new IntVariable(i),
-            _ => throw new LogicParserException($"Unsupported variable type: {value.GetType().Name}"),
+            _ => throw new LogicParserException($"Variable type {value.GetType().Name} is unsupported"),
         };
     }
 }
