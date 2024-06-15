@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Basalt.LogicParser.Models;
+using Basalt.LogicParser.Parsers;
+using Basalt.LogicParser.Resolvers;
 
 namespace Basalt.LogicParser;
 
@@ -19,8 +21,9 @@ public abstract class InventoryData
             return true;
         }
 
-        expression = AddPaddingAroundTokens(expression);
-        var tokens = CalculateTokens(expression);
+        IParser parser = new StandardParser(new StandardResolver(this));
+
+        var tokens = parser.Parse(expression);
 
         return ProcessTokens(expression, tokens);
     }

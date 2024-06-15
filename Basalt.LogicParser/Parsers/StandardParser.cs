@@ -1,5 +1,6 @@
 ﻿using Basalt.LogicParser.Models;
 using Basalt.LogicParser.Resolvers;
+using System;
 using System.Collections.Generic;
 
 namespace Basalt.LogicParser.Parsers;
@@ -12,6 +13,8 @@ public class StandardParser(IResolver resolver) : IParser
     /// <inheritdoc/>
     public IEnumerable<Token> Parse(string expression)
     {
+        expression = AddPaddingAroundTokens(expression);
+
         var tokens = new List<Token>();
         var operators = new Stack<Operator>();
 
