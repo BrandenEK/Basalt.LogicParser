@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Basalt.LogicParser.Models;
 
 namespace Basalt.LogicParser;
 
+/// <summary>
+/// Represents a collection of items used to evaluate logic expressions
+/// </summary>
 public abstract class InventoryData
 {
     /// <summary>
@@ -152,7 +154,7 @@ public abstract class InventoryData
         }
 
         // Regular operator
-        while (operators.Count > 0 && !(operators.Peek() is LeftParenthesisOperator) && operators.Peek().order <= op.order)
+        while (operators.Count > 0 && !(operators.Peek() is LeftParenthesisOperator) && operators.Peek().Order <= op.Order)
         {
             tokens.Add(operators.Pop());
         }
