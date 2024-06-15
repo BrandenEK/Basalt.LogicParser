@@ -1,83 +1,82 @@
 ﻿
-namespace Basalt.LogicParser
+namespace Basalt.LogicParser;
+
+internal class LeftParenthesisOperator : Operator
 {
-    internal class LeftParenthesisOperator : Operator
-    {
-        public LeftParenthesisOperator() : base(0) { }
+    public LeftParenthesisOperator() : base(0) { }
 
-        public override bool Evaluate(Variable left, Variable right)
-        {
-            throw new LogicParserException("Can not evaluate a parenthesis token!");
-        }
+    public override bool Evaluate(Variable left, Variable right)
+    {
+        throw new LogicParserException("Can not evaluate a parenthesis token!");
     }
+}
 
-    internal class RightParenthesisOperator : Operator
+internal class RightParenthesisOperator : Operator
+{
+    public RightParenthesisOperator() : base(0) { }
+
+    public override bool Evaluate(Variable left, Variable right)
     {
-        public RightParenthesisOperator() : base(0) { }
-
-        public override bool Evaluate(Variable left, Variable right)
-        {
-            throw new LogicParserException("Can not evaluate a parenthesis token!");
-        }
+        throw new LogicParserException("Can not evaluate a parenthesis token!");
     }
+}
 
-    internal class AndOperator : Operator
+internal class AndOperator : Operator
+{
+    public AndOperator() : base(1) { }
+
+    public override bool Evaluate(Variable left, Variable right)
     {
-        public AndOperator() : base(1) { }
-
-        public override bool Evaluate(Variable left, Variable right)
-        {
-            return ((BoolVariable)left).value && ((BoolVariable)right).value;
-        }
+        return ((BoolVariable)left).value && ((BoolVariable)right).value;
     }
+}
 
-    internal class OrOperator : Operator
+internal class OrOperator : Operator
+{
+    public OrOperator() : base(2) { }
+
+    public override bool Evaluate(Variable left, Variable right)
     {
-        public OrOperator() : base(2) { }
-
-        public override bool Evaluate(Variable left, Variable right)
-        {
-            return ((BoolVariable)left).value || ((BoolVariable)right).value;
-        }
+        return ((BoolVariable)left).value || ((BoolVariable)right).value;
     }
+}
 
-    internal class LessOperator : Operator
+internal class LessOperator : Operator
+{
+    public LessOperator() : base(0) { }
+
+    public override bool Evaluate(Variable left, Variable right)
     {
-        public LessOperator() : base(0) { }
-
-        public override bool Evaluate(Variable left, Variable right)
-        {
-            return ((IntVariable)left).value < ((IntVariable)right).value;
-        }
+        return ((IntVariable)left).value < ((IntVariable)right).value;
     }
+}
 
-    internal class GreaterOperator : Operator
+internal class GreaterOperator : Operator
+{
+    public GreaterOperator() : base(0) { }
+
+    public override bool Evaluate(Variable left, Variable right)
     {
-        public GreaterOperator() : base(0) { }
-
-        public override bool Evaluate(Variable left, Variable right)
-        {
-            return ((IntVariable)left).value > ((IntVariable)right).value;
-        }
+        return ((IntVariable)left).value > ((IntVariable)right).value;
     }
+}
 
-    internal class LessEqualOperator : Operator
+internal class LessEqualOperator : Operator
+{
+    public LessEqualOperator() : base(0) { }
+
+    public override bool Evaluate(Variable left, Variable right)
     {
-        public LessEqualOperator() : base(0) { }
-
-        public override bool Evaluate(Variable left, Variable right)
-        {
-            return ((IntVariable)left).value <= ((IntVariable)right).value;
-        }
+        return ((IntVariable)left).value <= ((IntVariable)right).value;
     }
+}
 
-    internal class GreaterEqualOperator : Operator
+internal class GreaterEqualOperator : Operator
+{
+    public GreaterEqualOperator() : base(0) { }
+
+    public override bool Evaluate(Variable left, Variable right)
     {
-        public GreaterEqualOperator() : base(0) { }
-
-        public override bool Evaluate(Variable left, Variable right)
-        {
-            return ((IntVariable)left).value >= ((IntVariable)right).value;
-        }
+        return ((IntVariable)left).value >= ((IntVariable)right).value;
     }
 }

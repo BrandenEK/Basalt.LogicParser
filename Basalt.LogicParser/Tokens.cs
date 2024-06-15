@@ -1,19 +1,18 @@
 ﻿
-namespace Basalt.LogicParser
+namespace Basalt.LogicParser;
+
+internal abstract class Token { }
+
+internal abstract class Variable : Token { }
+
+internal abstract class Operator : Token
 {
-    internal abstract class Token { }
+    public readonly byte order;
 
-    internal abstract class Variable : Token { }
-
-    internal abstract class Operator : Token
+    public Operator(byte order)
     {
-        public readonly byte order;
-
-        public Operator(byte order)
-        {
-            this.order = order;
-        }
-
-        public abstract bool Evaluate(Variable left, Variable right);
+        this.order = order;
     }
+
+    public abstract bool Evaluate(Variable left, Variable right);
 }

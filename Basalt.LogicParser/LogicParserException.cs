@@ -1,15 +1,14 @@
 ﻿using System;
 
-namespace Basalt.LogicParser
+namespace Basalt.LogicParser;
+
+/// <summary>
+/// An error that occurs during parsing
+/// </summary>
+public class LogicParserException : Exception
 {
     /// <summary>
-    /// An error that occurs during parsing
+    /// Creates a new logic exception
     /// </summary>
-    public class LogicParserException : Exception
-    {
-        /// <summary>
-        /// Creates a new logic exception
-        /// </summary>
-        public LogicParserException(string message) : base(message) { }
-    }
+    public LogicParserException(string message) : base(message) { }
 }
