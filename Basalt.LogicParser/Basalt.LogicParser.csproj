@@ -7,7 +7,7 @@
     <Title>Logic Parser</Title>
     <Authors>Damocles</Authors>
     <Description>Logic parser and evaluater for use with randomizers</Description>
-    <Version>1.1.1</Version>
+    <Version>1.2.0</Version>
 
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>

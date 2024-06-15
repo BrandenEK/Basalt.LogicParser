@@ -54,7 +54,7 @@ public class LeftParenthesisOperator() : Operator(0)
     /// <inheritdoc/>
     public override bool Evaluate(Variable left, Variable right)
     {
-        throw new LogicParserException("Can not evaluate a parenthesis token!");
+        throw new LogicParserException("Can not evaluate a parenthesis token");
     }
 }
 
@@ -64,7 +64,7 @@ public class RightParenthesisOperator() : Operator(0)
     /// <inheritdoc/>
     public override bool Evaluate(Variable left, Variable right)
     {
-        throw new LogicParserException("Can not evaluate a parenthesis token!");
+        throw new LogicParserException("Can not evaluate a parenthesis token");
     }
 }
 
