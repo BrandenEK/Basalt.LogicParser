@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Basalt.LogicParser.Models;
 
 namespace Basalt.LogicParser;
 
@@ -39,7 +40,7 @@ public abstract class InventoryData
         if (stack.Count != 1)
             throw new LogicParserException("Order of operations was incorrect for expression: " + expression);
 
-        return (stack.Pop() as BoolVariable).value;
+        return (stack.Pop() as BoolVariable).Value;
     }
 
     /// <summary>

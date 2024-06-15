@@ -1,9 +1,8 @@
 ﻿
 namespace Basalt.LogicParser;
 
-internal abstract class Token { }
+public abstract class Token { }
 
-internal abstract class Variable : Token { }
 
 internal abstract class Operator : Token
 {

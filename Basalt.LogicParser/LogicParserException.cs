@@ -5,10 +5,6 @@ namespace Basalt.LogicParser;
 /// <summary>
 /// An error that occurs during parsing
 /// </summary>
-public class LogicParserException : Exception
+public class LogicParserException(string message) : Exception(message)
 {
-    /// <summary>
-    /// Creates a new logic exception
-    /// </summary>
-    public LogicParserException(string message) : base(message) { }
 }
