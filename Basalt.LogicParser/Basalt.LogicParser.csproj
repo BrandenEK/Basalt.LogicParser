@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net35;net6.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
 
     <Title>Logic Parser</Title>
     <Authors>Damocles</Authors>
