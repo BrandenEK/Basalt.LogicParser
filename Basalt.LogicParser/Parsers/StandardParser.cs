@@ -1,14 +1,16 @@
 ﻿using Basalt.LogicParser.Models;
+using Basalt.LogicParser.Resolvers;
 using System.Collections.Generic;
 
 namespace Basalt.LogicParser.Parsers;
 
-public class StandardParser : IParser
+/// <inheritdoc/>
+public class StandardParser(IResolver resolver) : IParser
 {
-    /// <summary>
-    /// Converts the expression into a list of tokens in postfix notation
-    /// </summary>
-    private IEnumerable<Token> CalculateTokens(string expression)
+    private readonly IResolver _resolver = resolver;
+
+    /// <inheritdoc/>
+    public IEnumerable<Token> Parse(string expression)
     {
         var tokens = new List<Token>();
         var operators = new Stack<Operator>();
@@ -57,7 +59,43 @@ public class StandardParser : IParser
         }
 
         // If none of these, assume a game variable
-        tokens.Add(GetVariableValue(token));
+        tokens.Add(_resolver.Resolve(token));
+    }
+
+    /// <summary>
+    /// When parsing the expression and encountered an operator, perform logic to move tokens around
+    /// </summary>
+    private void CalculateOperator(string expression, string token, List<Token> tokens, Stack<Operator> operators)
+    {
+        Operator op = _allOperators[token];
+
+        // Left parenthesis
+        if (op is LeftParenthesisOperator)
+        {
+            operators.Push(op);
+            return;
+        }
+
+        // Right parenthesis
+        if (op is RightParenthesisOperator)
+        {
+            while (operators.Count > 0 && operators.Peek() is not LeftParenthesisOperator)
+            {
+                tokens.Add(operators.Pop());
+            }
+            if (operators.Count == 0)
+                throw new LogicParserException("Incorrect number of parentheses for expression: " + expression);
+
+            operators.Pop();
+            return;
+        }
+
+        // Regular operator
+        while (operators.Count > 0 && operators.Peek() is not LeftParenthesisOperator && operators.Peek().Order <= op.Order)
+        {
+            tokens.Add(operators.Pop());
+        }
+        operators.Push(op);
     }
 
     /// <summary>

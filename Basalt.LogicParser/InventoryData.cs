@@ -28,21 +28,7 @@ public abstract class InventoryData
     /// <summary>
     /// Get an object representing the value of the specified variable from the child class
     /// </summary>
-    protected abstract object GetVariable(string variable);
-
-    /// <summary>
-    /// Convert the variable based on its type into the wrapper class
-    /// </summary>
-    private Variable GetVariableValue(string variable)
-    {
-        object value = GetVariable(variable);
-        switch (value)
-        {
-            case bool b: return new BoolVariable(b);
-            case int i: return new IntVariable(i);
-            default: throw new LogicParserException($"Unsupported variable type: {value.GetType().Name}");
-        }
-    }
+    protected internal abstract object GetVariable(string variable);
 
     /// <summary>
     /// Evaluate the tokens in postfix notation as a stack until the final result is left
@@ -87,42 +73,6 @@ public abstract class InventoryData
             stack.Push(new BoolVariable(result));
             return;
         }
-    }
-
-    /// <summary>
-    /// When parsing the expression and encountered an operator, perform logic to move tokens around
-    /// </summary>
-    private void CalculateOperator(string expression, string token, List<Token> tokens, Stack<Operator> operators)
-    {
-        Operator op = _allOperators[token];
-
-        // Left parenthesis
-        if (op is LeftParenthesisOperator)
-        {
-            operators.Push(op);
-            return;
-        }
-
-        // Right parenthesis
-        if (op is RightParenthesisOperator)
-        {
-            while (operators.Count > 0 && operators.Peek() is not LeftParenthesisOperator)
-            {
-                tokens.Add(operators.Pop());
-            }
-            if (operators.Count == 0)
-                throw new LogicParserException("Incorrect number of parentheses for expression: " + expression);
-
-            operators.Pop();
-            return;
-        }
-
-        // Regular operator
-        while (operators.Count > 0 && operators.Peek() is not LeftParenthesisOperator && operators.Peek().Order <= op.Order)
-        {
-            tokens.Add(operators.Pop());
-        }
-        operators.Push(op);
     }
 
     /// <summary>
