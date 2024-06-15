@@ -10,22 +10,41 @@ namespace Basalt.LogicParser;
 /// </summary>
 public abstract class InventoryData
 {
+    private readonly IFormatter _formatter;
+    private readonly IResolver _resolver;
+    private readonly IParser _parser;
+    private readonly ICalculator _calculator;
+
+    /// <summary>
+    /// Initializes a new inventory with standard functionality
+    /// </summary>
+    public InventoryData()
+    {
+        _formatter = new StandardFormatter();
+        _resolver = new StandardResolver(this);
+        _parser = new StandardParser(_resolver);
+        _calculator = new StandardCalculator();
+    }
+
+    /// <summary>
+    /// Initializes a new inventory with custom functionality
+    /// </summary>
+    public InventoryData(IFormatter formatter, IResolver resolver, IParser parser, ICalculator calculator)
+    {
+        _formatter = formatter;
+        _resolver = resolver;
+        _parser = parser;
+        _calculator = calculator;
+    }
+
     /// <summary>
     /// Converts the string expression to a logical statement and evaluates it
     /// </summary>
     public bool Evaluate(string expression)
     {
-        // If nothing, then its true
-        if (string.IsNullOrEmpty(expression))
-            return true;
-
-        IFormatter formatter = new StandardFormatter();
-        IResolver resolver = new StandardResolver(this);
-        IParser parser = new StandardParser(resolver);
-        ICalculator calculator = new StandardCalculator();
-
         LogicParserException.CurrentExpression = expression;
-        return calculator.Calculate(parser.Parse(formatter.Format(expression)));
+
+        return string.IsNullOrEmpty(expression) || _calculator.Calculate(_parser.Parse(_formatter.Format(expression)));
     }
 
     /// <summary>
