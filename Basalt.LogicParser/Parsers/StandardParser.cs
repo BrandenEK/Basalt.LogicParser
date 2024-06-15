@@ -52,7 +52,7 @@ public class StandardParser(IResolver resolver) : IParser
         }
 
         // Registered operator
-        if (_allOperators.ContainsKey(token))
+        if (Operator.All.ContainsKey(token))
         {
             CalculateOperator(expression, token, tokens, operators);
             return;
@@ -67,7 +67,7 @@ public class StandardParser(IResolver resolver) : IParser
     /// </summary>
     private void CalculateOperator(string expression, string token, List<Token> tokens, Stack<Operator> operators)
     {
-        Operator op = _allOperators[token];
+        Operator op = Operator.All[token];
 
         // Left parenthesis
         if (op is LeftParenthesisOperator)

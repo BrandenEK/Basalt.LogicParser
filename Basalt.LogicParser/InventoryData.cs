@@ -74,33 +74,4 @@ public abstract class InventoryData
             return;
         }
     }
-
-    /// <summary>
-    /// Create and initialize the dictionary of valid operators
-    /// </summary>
-    static InventoryData()
-    {
-        var leftParenthesis = new LeftParenthesisOperator();
-        var rightParenthesis = new RightParenthesisOperator();
-        var and = new AndOperator();
-        var or = new OrOperator();
-
-        _allOperators = new Dictionary<string, Operator>()
-        {
-            { "(", leftParenthesis },
-            { ")", rightParenthesis },
-            { "[", leftParenthesis },
-            { "]", rightParenthesis },
-            { "&&", and },
-            { "+", and },
-            { "||", or },
-            { "|", or },
-            { "<", new LessOperator() },
-            { ">", new GreaterOperator() },
-            { "<=", new LessEqualOperator() },
-            { ">=", new GreaterEqualOperator() },
-        };
-    }
-
-    private static readonly Dictionary<string, Operator> _allOperators;
 }

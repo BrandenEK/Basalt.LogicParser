@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Basalt.LogicParser.Models;
 
 /// <summary>
@@ -15,6 +17,35 @@ public abstract class Operator(byte order) : Token
     /// Evaluates two variables and returns the result
     /// </summary>
     public abstract bool Evaluate(Variable left, Variable right);
+
+    /// <summary>
+    /// All valid operators
+    /// </summary>
+    public static Dictionary<string, Operator> All { get; } = new();
+
+    static Operator()
+    {
+        var leftParenthesis = new LeftParenthesisOperator();
+        var rightParenthesis = new RightParenthesisOperator();
+        var and = new AndOperator();
+        var or = new OrOperator();
+
+        All = new Dictionary<string, Operator>()
+        {
+            { "(", leftParenthesis },
+            { ")", rightParenthesis },
+            { "[", leftParenthesis },
+            { "]", rightParenthesis },
+            { "&&", and },
+            { "+", and },
+            { "||", or },
+            { "|", or },
+            { "<", new LessOperator() },
+            { ">", new GreaterOperator() },
+            { "<=", new LessEqualOperator() },
+            { ">=", new GreaterEqualOperator() },
+        };
+    }
 }
 
 /// <inheritdoc/>
