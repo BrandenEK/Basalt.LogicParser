@@ -1,4 +1,5 @@
 ﻿using Basalt.LogicParser.Calculators;
+using Basalt.LogicParser.Formatters;
 using Basalt.LogicParser.Parsers;
 using Basalt.LogicParser.Resolvers;
 
@@ -18,12 +19,13 @@ public abstract class InventoryData
         if (string.IsNullOrEmpty(expression))
             return true;
 
+        IFormatter formatter = new StandardFormatter();
         IResolver resolver = new StandardResolver(this);
         IParser parser = new StandardParser(resolver);
         ICalculator calculator = new StandardCalculator();
 
         LogicParserException.CurrentExpression = expression;
-        return calculator.Calculate(parser.Parse(expression));
+        return calculator.Calculate(parser.Parse(formatter.Format(expression)));
     }
 
     /// <summary>
