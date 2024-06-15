@@ -6,18 +6,14 @@ namespace Basalt.LogicParser.Models;
 /// </summary>
 public abstract class Variable : Token { }
 
-/// <summary>
-/// An integer variable
-/// </summary>
+/// <inheritdoc/>
 public class IntVariable(int value) : Variable
 {
     /// <summary> The value of this variable </summary>
     public int Value { get; } = value;
 }
 
-/// <summary>
-/// A boolean variable
-/// </summary>
+/// <inheritdoc/>
 public class BoolVariable(bool value) : Variable
 {
     /// <summary> The value of this variable </summary>

@@ -1,4 +1,5 @@
 ﻿
+using Basalt.LogicParser.Models;
 using System.Collections.Generic;
 
 namespace Basalt.LogicParser.Parsers;
