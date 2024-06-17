@@ -19,8 +19,11 @@ public class ReflectionResolver : IResolver
     public ReflectionResolver(object info)
     {
         _info = info;
-        _resolvableProperties = info.GetType().GetProperties().Where(IsValidResolvable)
-            .ToDictionary(p => ((ResolvableAsAttribute)p.GetCustomAttributes(typeof(ResolvableAsAttribute), false)[0]).Name, p => p);
+        _resolvableProperties = info.GetType()
+            .GetProperties()
+            .Where(IsValidResolvable)
+            .SelectMany(p => GetAttribute(p).Names, (p, name) => new NamePropertyMatch(name, p))
+            .ToDictionary(match => match.Name, match => match.Property);
     }
 
     /// <inheritdoc/>
@@ -53,5 +56,10 @@ public class ReflectionResolver : IResolver
             return false;
 
         return true;
+    }
+
+    private ResolvableAsAttribute GetAttribute(PropertyInfo property)
+    {
+        return (ResolvableAsAttribute)property.GetCustomAttributes(typeof(ResolvableAsAttribute), false)[0];
     }
 }

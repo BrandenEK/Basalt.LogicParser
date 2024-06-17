@@ -46,10 +46,10 @@ public static class Core
 
 public class InventoryInfo
 {
-    [CollectableAs("a")] [ResolvableAs("a")]
+    [CollectableAs("a")] [ResolvableAs("a", "along")]
     public bool A { get; set; }
 
-    [CollectableAs("b")]
+    [CollectableAs("b")] [ResolvableAs("b")]
     public bool B { get; set; }
     [CollectableAs("c")]
     public bool C { get; set; }
