@@ -18,7 +18,7 @@ public class GameInventory
     /// <summary>
     /// Used to format the string expression before going into the parser
     /// </summary>
-    public IFormatter Formatter { get; set; } = new StandardFormatter();
+    public IFormatter Formatter { get; set; } = new ParenthesisPaddingFormatter();
 
     /// <summary>
     /// Used to parse the string expression into a collection of tokens
@@ -37,7 +37,7 @@ public class GameInventory
     {
         LogicParserException.CurrentExpression = expression;
 
-        return string.IsNullOrEmpty(expression) || Calculator.Calculate(Parser.Parse(Formatter.Format(expression)));
+        return string.IsNullOrEmpty(expression) || Calculator.Calculate(Parser.Parse(Formatter.Format(expression), Resolver));
     }
 
     /// <summary>
