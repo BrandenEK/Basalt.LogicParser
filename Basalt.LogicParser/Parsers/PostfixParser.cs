@@ -4,8 +4,10 @@ using System.Collections.Generic;
 
 namespace Basalt.LogicParser.Parsers;
 
-/// <inheritdoc/>
-public class StandardParser : IParser
+/// <summary>
+/// Parses each whitespace-separated token and orders them using postfix notation
+/// </summary>
+public class PostfixParser : IParser
 {
     /// <inheritdoc/>
     public IEnumerable<Token> Parse(string expression, IResolver resolver)
