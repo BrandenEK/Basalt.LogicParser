@@ -3,8 +3,10 @@ using System.Collections.Generic;
 
 namespace Basalt.LogicParser.Calculators;
 
-/// <inheritdoc/>
-public class StandardCalculator : ICalculator
+/// <summary>
+/// Calculates the result of the tokens by evaluating them as a postfix stack
+/// </summary>
+public class PostfixCalculator : ICalculator
 {
     /// <inheritdoc/>
     public bool Calculate(IEnumerable<Token> tokens)
