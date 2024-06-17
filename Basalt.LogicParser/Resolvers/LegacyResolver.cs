@@ -2,7 +2,9 @@
 
 namespace Basalt.LogicParser.Resolvers;
 
-/// <inheritdoc/>
+/// <summary>
+/// Resolves the variable by calling an abstract method
+/// </summary>
 public abstract class LegacyResolver : IResolver
 {
     /// <summary>
