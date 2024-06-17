@@ -1,5 +1,5 @@
 ﻿using Basalt.LogicParser.Calculators;
-using Basalt.LogicParser.Models;
+using static Basalt.LogicParser.Tests.TestUtils;
 
 namespace Basalt.LogicParser.Tests;
 
@@ -40,36 +40,6 @@ public abstract class CalculatorTests
                 Assert.ThrowsException<LogicParserException>(() => Calculator.Calculate(tokens));
                 break;
         }
-    }
-
-    private static IEnumerable<Token> ParseString(string str)
-    {
-        return str.Select(ParseChar);
-    }
-
-    private static Token ParseChar(char c)
-    {
-        return c switch
-        {
-            't' => new BoolVariable(true),
-            'f' => new BoolVariable(false),
-            '0' => new IntVariable(0),
-            '1' => new IntVariable(1),
-            '(' => new LeftParenthesisOperator(),
-            ')' => new RightParenthesisOperator(),
-            '+' => new AndOperator(),
-            '|' => new OrOperator(),
-            '<' => new LessOperator(),
-            '>' => new GreaterOperator(),
-            _ => throw new NotImplementedException()
-        };
-    }
-
-    public enum OutputType
-    {
-        True,
-        False,
-        Error
     }
 }
 
