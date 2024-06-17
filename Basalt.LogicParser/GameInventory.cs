@@ -8,8 +8,13 @@ namespace Basalt.LogicParser;
 /// <summary>
 /// Represents a collection of items used to evaluate logic expressions
 /// </summary>
-public class GameInventory
+public class GameInventory(ICalculator calculator, IFormatter formatter, IParser parser, IResolver resolver)
 {
+    private readonly ICalculator _calculator = calculator;
+    private readonly IFormatter _formatter = formatter;
+    private readonly IParser _parser = parser;
+    private readonly IResolver _resolver = resolver;
+
     /// <summary>
     /// Used to calculate a boolean result from a collection of tokens
     /// </summary>
