@@ -1,15 +1,11 @@
-﻿using Basalt.LogicParser.Resolvers;
+﻿using Basalt.LogicParser.Models;
+using Basalt.LogicParser.Resolvers;
 
 namespace Basalt.LogicParser.Tests;
 
-internal class TestResolver : LegacyResolver
+internal class TestResolver(TestInventoryInfo info) : IResolver
 {
-    private bool item1 = false;
-    private bool item2 = false;
-    private bool item3 = false;
-
-    private int numbers1 = 0;
-    private int numbers2 = 0;
+    private readonly TestInventoryInfo _info = info;
 
     public void AddItem(string item)
     {
@@ -33,16 +29,16 @@ internal class TestResolver : LegacyResolver
         }
     }
 
-    protected override object GetVariable(string variable)
+    public Variable Resolve(string variable)
     {
         return variable switch
         {
-            "item1" => item1,
-            "item2" => item2,
-            "item3" => item3,
+            "a" => new BoolVariable(_info.A),
+            "b" => new BoolVariable(_info.B),
+            "c" => new BoolVariable(_info.C),
 
-            "numbers1" => numbers1,
-            "numbers2" => numbers2,
+            "x" => new IntVariable(_info.X),
+            "y" => new IntVariable(_info.Y),
 
             _ => throw new LogicParserException($"Unknown variable: {variable}")
         };
