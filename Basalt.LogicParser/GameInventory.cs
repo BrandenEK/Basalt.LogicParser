@@ -8,34 +8,27 @@ namespace Basalt.LogicParser;
 /// <summary>
 /// Represents a collection of items used to evaluate logic expressions
 /// </summary>
-public abstract class GameInventory
+public class GameInventory
 {
-    private readonly IFormatter _formatter;
-    private readonly IResolver _resolver;
-    private readonly IParser _parser;
-    private readonly ICalculator _calculator;
+    /// <summary>
+    /// Used to calculate a boolean result from a collection of tokens
+    /// </summary>
+    public ICalculator Calculator { get; set; } = new StandardCalculator();
 
     /// <summary>
-    /// Initializes a new inventory with standard functionality
+    /// Used to format the string expression before going into the parser
     /// </summary>
-    public GameInventory()
-    {
-        _formatter = new StandardFormatter();
-        _resolver = new StandardResolver(this);
-        _parser = new StandardParser(_resolver);
-        _calculator = new StandardCalculator();
-    }
+    public IFormatter Formatter { get; set; } = new StandardFormatter();
 
     /// <summary>
-    /// Initializes a new inventory with custom functionality
+    /// Used to parse the string expression into a collection of tokens
     /// </summary>
-    public GameInventory(IFormatter formatter, IResolver resolver, IParser parser, ICalculator calculator)
-    {
-        _formatter = formatter;
-        _resolver = resolver;
-        _parser = parser;
-        _calculator = calculator;
-    }
+    public IParser Parser { get; set; } = new StandardParser();
+
+    /// <summary>
+    /// Used to resolve a string variable into a token
+    /// </summary>
+    public IResolver Resolver { get; set; } = new StandardResolver();
 
     /// <summary>
     /// Converts the string expression to a logical statement and evaluates it
@@ -44,11 +37,11 @@ public abstract class GameInventory
     {
         LogicParserException.CurrentExpression = expression;
 
-        return string.IsNullOrEmpty(expression) || _calculator.Calculate(_parser.Parse(_formatter.Format(expression)));
+        return string.IsNullOrEmpty(expression) || Calculator.Calculate(Parser.Parse(Formatter.Format(expression)));
     }
 
     /// <summary>
     /// Get an object representing the value of the specified variable from the child class
     /// </summary>
-    protected internal abstract object GetVariable(string variable);
+    //protected internal abstract object GetVariable(string variable);
 }
