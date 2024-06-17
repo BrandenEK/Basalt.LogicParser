@@ -13,6 +13,7 @@ public class ExpressionTests
 
         return new GameInventory(
             new PostfixCalculator(),
+            new TestCollector(info),
             new ParenthesisPaddingFormatter(),
             new PostfixParser(),
             new TestResolver(info));
