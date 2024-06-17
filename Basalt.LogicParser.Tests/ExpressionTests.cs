@@ -28,7 +28,7 @@ public class ExpressionTests
     public void Item1_AfterItem()
     {
         var inventory = CreateNewInventory();
-        //inventory.AddItem("item1");
+        inventory.Add("item1");
 
         Assert.IsTrue(inventory.Evaluate("item1"));
     }
@@ -45,7 +45,7 @@ public class ExpressionTests
     public void Numbers1_AfterItem()
     {
         var inventory = CreateNewInventory();
-        //inventory.AddItem("numbers1");
+        inventory.Add("numbers1");
 
         Assert.IsTrue(inventory.Evaluate("numbers1 > 0"));
     }
@@ -54,10 +54,10 @@ public class ExpressionTests
     public void ComplexLogic()
     {
         var inventory = CreateNewInventory();
-        //inventory.AddItem("item1");
-        //inventory.AddItem("item2");
-        //inventory.AddItem("numbers1");
-        //inventory.AddItem("numbers1");
+        inventory.Add("item1");
+        inventory.Add("item2");
+        inventory.Add("numbers1");
+        inventory.Add("numbers1");
 
         bool expr1 = inventory.Evaluate("(numbers1 >= 2 + item1) | (numbers2 > 1 + item3) + item2");
         bool expr2 = inventory.Evaluate("item1 && item2 && item3 || numbers2 >= 1");

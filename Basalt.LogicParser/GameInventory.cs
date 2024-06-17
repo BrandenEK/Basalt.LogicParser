@@ -24,4 +24,20 @@ public class GameInventory(ICalculator calculator, IFormatter formatter, IParser
 
         return string.IsNullOrEmpty(expression) || _calculator.Calculate(_parser.Parse(_formatter.Format(expression), _resolver));
     }
+
+    /// <summary>
+    /// Adds the item to the inventory
+    /// </summary>
+    public void Add(string item)
+    {
+
+    }
+
+    /// <summary>
+    /// Removes the item from the inventory
+    /// </summary>
+    public void Remove(string item)
+    {
+
+    }
 }
