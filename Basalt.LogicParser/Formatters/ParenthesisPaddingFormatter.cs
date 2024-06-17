@@ -2,19 +2,13 @@
 
 namespace Basalt.LogicParser.Formatters;
 
-/// <inheritdoc/>
+/// <summary>
+/// Adds padding around parentheses in the expression, if not already present
+/// </summary>
 public class ParenthesisPaddingFormatter : IFormatter
 {
     /// <inheritdoc/>
     public string Format(string expression)
-    {
-        return AddPaddingAroundTokens(expression);
-    }
-
-    /// <summary>
-    /// Adds padding around parentheses, if not already present
-    /// </summary>
-    private string AddPaddingAroundTokens(string expression)
     {
         for (int i = 0; i < expression.Length; i++)
         {
