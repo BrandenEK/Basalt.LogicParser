@@ -10,5 +10,5 @@ public class LogicParserException(string mesage) : Exception($"{mesage} for expr
     /// <summary>
     /// The current expression being evaluated
     /// </summary>
-    public static string CurrentExpression { get; set; }
+    public static string CurrentExpression { get; set; } = string.Empty;
 }

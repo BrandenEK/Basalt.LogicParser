@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace Basalt.LogicParser.Parsers;
 
-/// <inheritdoc/>
-public class StandardParser(IResolver resolver) : IParser
+/// <summary>
+/// Parses each whitespace-separated token and orders them using postfix notation
+/// </summary>
+public class PostfixParser : IParser
 {
-    private readonly IResolver _resolver = resolver;
-
     /// <inheritdoc/>
-    public IEnumerable<Token> Parse(string expression)
+    public IEnumerable<Token> Parse(string expression, IResolver resolver)
     {
         var tokens = new List<Token>();
         var operators = new Stack<Operator>();
@@ -18,7 +18,7 @@ public class StandardParser(IResolver resolver) : IParser
         // Calculate each token in the split string and add it to the list of tokens
         foreach (string token in expression.Split(' '))
         {
-            CalculateToken(token, tokens, operators);
+            CalculateToken(token, resolver, tokens, operators);
         }
 
         // Add remaining operators
@@ -36,7 +36,7 @@ public class StandardParser(IResolver resolver) : IParser
     /// <summary>
     /// Processes the token as a string and converts it into either a variable or an operator
     /// </summary>
-    private void CalculateToken(string token, List<Token> tokens, Stack<Operator> operators)
+    private void CalculateToken(string token, IResolver resolver, List<Token> tokens, Stack<Operator> operators)
     {
         // Extra empty space is not allowed
         if (token == string.Empty)
@@ -59,7 +59,7 @@ public class StandardParser(IResolver resolver) : IParser
         }
 
         // If none of these, assume a game variable
-        tokens.Add(_resolver.Resolve(token));
+        tokens.Add(resolver.Resolve(token));
     }
 
     /// <summary>
