@@ -3,7 +3,7 @@
 namespace Basalt.LogicParser.Formatters;
 
 /// <inheritdoc/>
-public class StandardFormatter : IFormatter
+public class ParenthesisPaddingFormatter : IFormatter
 {
     /// <inheritdoc/>
     public string Format(string expression)
