@@ -19,8 +19,8 @@ public class PostfixCalculator : ICalculator
             ProcessToken(token, stack);
         }
 
-        // Ensure that the stack is fully completed
-        if (stack.Count != 1)
+        // Ensure that the stack is fully completed and a bool is on top
+        if (stack.Count != 1 || stack.Peek() is not BoolVariable)
             throw new LogicParserException("Invalid order of operations");
 
         return ((BoolVariable)stack.Pop()).Value;
