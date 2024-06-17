@@ -21,7 +21,7 @@ public class StandardCalculator : ICalculator
         if (stack.Count != 1)
             throw new LogicParserException("Invalid order of operations");
 
-        return (stack.Pop() as BoolVariable).Value;
+        return ((BoolVariable)stack.Pop()).Value;
     }
 
     /// <summary>
