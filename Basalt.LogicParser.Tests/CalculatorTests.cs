@@ -5,7 +5,8 @@ namespace Basalt.LogicParser.Tests;
 
 public abstract class CalculatorTests
 {
-    protected abstract ICalculator Calculator { get; }
+    protected ICalculator? _calculator;
+    private ICalculator Calculator => _calculator ?? throw new NullReferenceException(nameof(_calculator));
 
     [TestMethod]
     [DataRow("", OutputType.Error)]
@@ -25,7 +26,7 @@ public abstract class CalculatorTests
     [DataRow("ft|", OutputType.True)]
     [DataRow("10>", OutputType.True)]
     [DataRow("tt+f|", OutputType.True)]
-    public void Calculate_Postfix(string input, OutputType output)
+    public void Execute(string input, OutputType output)
     {
         var tokens = ParseString(input);
         switch (output)
@@ -46,5 +47,9 @@ public abstract class CalculatorTests
 [TestClass]
 public class PostfixCalculatorTests : CalculatorTests
 {
-    protected override ICalculator Calculator { get; } = new PostfixCalculator();
+    [TestInitialize]
+    public void Setup()
+    {
+        _calculator = new PostfixCalculator();
+    }
 }
