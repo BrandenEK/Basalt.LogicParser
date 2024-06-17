@@ -1,13 +1,25 @@
+using Basalt.LogicParser.Calculators;
+using Basalt.LogicParser.Formatters;
+using Basalt.LogicParser.Parsers;
 
 namespace Basalt.LogicParser.Tests;
 
 [TestClass]
 public class ExpressionTests
 {
+    private static GameInventory CreateNewInventory()
+    {
+        return new GameInventory(
+            new PostfixCalculator(),
+            new ParenthesisPaddingFormatter(),
+            new PostfixParser(),
+            new TestResolver());
+    }
+
     [TestMethod]
     public void Item1_BeforeItem()
     {
-        var inventory = new TestInventory();
+        var inventory = CreateNewInventory();
 
         Assert.IsFalse(inventory.Evaluate("item1"));
     }
@@ -15,8 +27,8 @@ public class ExpressionTests
     [TestMethod]
     public void Item1_AfterItem()
     {
-        var inventory = new TestInventory();
-        inventory.AddItem("item1");
+        var inventory = CreateNewInventory();
+        //inventory.AddItem("item1");
 
         Assert.IsTrue(inventory.Evaluate("item1"));
     }
@@ -24,7 +36,7 @@ public class ExpressionTests
     [TestMethod]
     public void Numbers1_BeforeItem()
     {
-        var inventory = new TestInventory();
+        var inventory = CreateNewInventory();
 
         Assert.IsFalse(inventory.Evaluate("numbers1 > 0"));
     }
@@ -32,8 +44,8 @@ public class ExpressionTests
     [TestMethod]
     public void Numbers1_AfterItem()
     {
-        var inventory = new TestInventory();
-        inventory.AddItem("numbers1");
+        var inventory = CreateNewInventory();
+        //inventory.AddItem("numbers1");
 
         Assert.IsTrue(inventory.Evaluate("numbers1 > 0"));
     }
@@ -41,11 +53,11 @@ public class ExpressionTests
     [TestMethod]
     public void ComplexLogic()
     {
-        var inventory = new TestInventory();
-        inventory.AddItem("item1");
-        inventory.AddItem("item2");
-        inventory.AddItem("numbers1");
-        inventory.AddItem("numbers1");
+        var inventory = CreateNewInventory();
+        //inventory.AddItem("item1");
+        //inventory.AddItem("item2");
+        //inventory.AddItem("numbers1");
+        //inventory.AddItem("numbers1");
 
         bool expr1 = inventory.Evaluate("(numbers1 >= 2 + item1) | (numbers2 > 1 + item3) + item2");
         bool expr2 = inventory.Evaluate("item1 && item2 && item3 || numbers2 >= 1");

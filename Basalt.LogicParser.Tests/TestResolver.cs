@@ -1,7 +1,8 @@
-﻿
+﻿using Basalt.LogicParser.Resolvers;
+
 namespace Basalt.LogicParser.Tests;
 
-internal class TestInventory : GameInventory
+internal class TestResolver : LegacyResolver
 {
     private bool item1 = false;
     private bool item2 = false;
