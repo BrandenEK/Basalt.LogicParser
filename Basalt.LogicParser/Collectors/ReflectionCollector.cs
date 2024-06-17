@@ -21,9 +21,9 @@ public class ReflectionCollector : ICollector
         _collectableProperties = info.GetType()
             .GetProperties()
             .Where(IsValidCollectable)
-            .SelectMany(p => GetAttribute(p).Items, (p, item) => new NamePropertyMatch(item, p))
-            .GroupBy(match => match.Name)
-            .ToDictionary(group => group.Key, group => group.Select(match => match.Property));
+            .SelectMany(p => GetAttribute(p).Items, (p, item) => new KeyValuePair<string, PropertyInfo>(item, p))
+            .GroupBy(match => match.Key)
+            .ToDictionary(group => group.Key, group => group.Select(match => match.Value));
     }
 
     /// <inheritdoc/>

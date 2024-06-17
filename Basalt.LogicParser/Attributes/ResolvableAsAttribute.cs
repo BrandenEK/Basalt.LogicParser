@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 
 namespace Basalt.LogicParser.Attributes;
 
@@ -10,10 +9,4 @@ namespace Basalt.LogicParser.Attributes;
 public class ResolvableAsAttribute(params string[] names) : Attribute
 {
     internal string[] Names { get; } = names;
-}
-
-internal class NamePropertyMatch(string name, PropertyInfo property)
-{
-    public string Name { get; } = name;
-    public PropertyInfo Property { get; } = property;
 }

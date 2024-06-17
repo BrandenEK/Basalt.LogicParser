@@ -22,8 +22,8 @@ public class ReflectionResolver : IResolver
         _resolvableProperties = info.GetType()
             .GetProperties()
             .Where(IsValidResolvable)
-            .SelectMany(p => GetAttribute(p).Names, (p, name) => new NamePropertyMatch(name, p))
-            .ToDictionary(match => match.Name, match => match.Property);
+            .SelectMany(p => GetAttribute(p).Names, (p, name) => new KeyValuePair<string, PropertyInfo>(name, p))
+            .ToDictionary(match => match.Key, match => match.Value);
     }
 
     /// <inheritdoc/>
