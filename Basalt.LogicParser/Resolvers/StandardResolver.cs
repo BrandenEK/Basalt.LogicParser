@@ -3,9 +3,9 @@
 namespace Basalt.LogicParser.Resolvers;
 
 /// <inheritdoc/>
-public class StandardResolver(InventoryData inventory) : IResolver
+public class StandardResolver(GameInventory inventory) : IResolver
 {
-    private readonly InventoryData _inventory = inventory;
+    private readonly GameInventory _inventory = inventory;
 
     /// <inheritdoc/>
     public Variable Resolve(string variable)

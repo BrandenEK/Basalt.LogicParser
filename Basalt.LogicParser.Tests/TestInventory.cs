@@ -1,7 +1,7 @@
 ﻿
 namespace Basalt.LogicParser.Tests;
 
-internal class TestInventory : InventoryData
+internal class TestInventory : GameInventory
 {
     private bool item1 = false;
     private bool item2 = false;

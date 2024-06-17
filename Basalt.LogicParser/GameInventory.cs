@@ -8,7 +8,7 @@ namespace Basalt.LogicParser;
 /// <summary>
 /// Represents a collection of items used to evaluate logic expressions
 /// </summary>
-public abstract class InventoryData
+public abstract class GameInventory
 {
     private readonly IFormatter _formatter;
     private readonly IResolver _resolver;
@@ -18,7 +18,7 @@ public abstract class InventoryData
     /// <summary>
     /// Initializes a new inventory with standard functionality
     /// </summary>
-    public InventoryData()
+    public GameInventory()
     {
         _formatter = new StandardFormatter();
         _resolver = new StandardResolver(this);
@@ -29,7 +29,7 @@ public abstract class InventoryData
     /// <summary>
     /// Initializes a new inventory with custom functionality
     /// </summary>
-    public InventoryData(IFormatter formatter, IResolver resolver, IParser parser, ICalculator calculator)
+    public GameInventory(IFormatter formatter, IResolver resolver, IParser parser, ICalculator calculator)
     {
         _formatter = formatter;
         _resolver = resolver;
