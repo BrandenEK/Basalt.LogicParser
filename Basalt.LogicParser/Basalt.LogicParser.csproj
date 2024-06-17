@@ -13,7 +13,6 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <RepositoryUrl>https://github.com/BrandenEK/Basalt.LogicParser</RepositoryUrl>
-    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
 </Project>
