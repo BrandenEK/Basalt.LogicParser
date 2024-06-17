@@ -12,14 +12,18 @@ namespace Basalt.LogicParser.Collectors;
 public class ReflectionCollector : ICollector
 {
     private readonly object _info;
-    private readonly Dictionary<CollectableAsAttribute, PropertyInfo> _collectableProperties;
+    private readonly Dictionary<string, IEnumerable<PropertyInfo>> _collectableProperties;
 
     /// <summary> </summary>
     public ReflectionCollector(object info)
     {
         _info = info;
-        _collectableProperties = info.GetType().GetProperties().Where(IsValidCollectable)
-            .ToDictionary(p => (CollectableAsAttribute)p.GetCustomAttributes(typeof(CollectableAsAttribute), false)[0], p => p);
+        _collectableProperties = info.GetType()
+            .GetProperties()
+            .Where(IsValidCollectable)
+            .SelectMany(p => GetAttribute(p).Items, (p, item) => new NamePropertyMatch(item, p))
+            .GroupBy(match => match.Name)
+            .ToDictionary(group => group.Key, group => group.Select(match => match.Property));
     }
 
     /// <inheritdoc/>
@@ -36,9 +40,12 @@ public class ReflectionCollector : ICollector
 
     private void UpdateProperties(string item, bool isAddition)
     {
-        foreach (var kvp in _collectableProperties.Where(kvp => kvp.Key.Item == item))
+        if (!_collectableProperties.TryGetValue(item, out IEnumerable<PropertyInfo>? properties))
+            return;
+
+        foreach (var property in properties)
         {
-            UpdateProperty(kvp.Value, isAddition);
+            UpdateProperty(property, isAddition);
         }
     }
 
@@ -48,24 +55,14 @@ public class ReflectionCollector : ICollector
         switch (type)
         {
             case TypeCode.Boolean:
-                UpdateBooleanProperty(property, isAddition);
+                property.SetValue(_info, isAddition, null);
                 break;
             case TypeCode.Int32:
-                UpdateIntegerProperty(property, isAddition);
+                property.SetValue(_info, (int)(property.GetValue(_info, null) ?? 0) + (isAddition ? 1 : -1), null);
                 break;
             default:
                 throw new LogicParserException($"Variable type {type} is unsupported");
         }
-    }
-
-    private void UpdateBooleanProperty(PropertyInfo property, bool isAddition)
-    {
-        property.SetValue(_info, isAddition, null);
-    }
-
-    private void UpdateIntegerProperty(PropertyInfo property, bool isAddition)
-    {
-        property.SetValue(_info, (int)(property.GetValue(_info, null) ?? 0) + (isAddition ? 1 : -1), null);
     }
 
     private bool IsValidCollectable(PropertyInfo property)
@@ -83,5 +80,10 @@ public class ReflectionCollector : ICollector
             return false;
 
         return true;
+    }
+
+    private CollectableAsAttribute GetAttribute(PropertyInfo property)
+    {
+        return (CollectableAsAttribute)property.GetCustomAttributes(typeof(CollectableAsAttribute), false)[0];
     }
 }
