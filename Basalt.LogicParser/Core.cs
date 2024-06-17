@@ -1,5 +1,7 @@
 ﻿using Basalt.LogicParser.Attributes;
 using Basalt.LogicParser.Collectors;
+using Basalt.LogicParser.Models;
+using Basalt.LogicParser.Resolvers;
 using System;
 
 namespace Basalt.LogicParser;
@@ -11,6 +13,7 @@ public static class Core
         InventoryInfo info = new();
 
         ICollector collector = new ReflectionCollector(info);
+        IResolver resolver = new ReflectionResolver(info);
 
         Console.WriteLine("Before:");
         info.Print();
@@ -31,14 +34,21 @@ public static class Core
         collector.Remove("a");
         info.Print();
 
+        Console.WriteLine("Resolving");
+
+        Console.WriteLine($"A: {((BoolVariable)resolver.Resolve("a")).Value}");
+        collector.Add("a");
+        Console.WriteLine($"A: {((BoolVariable)resolver.Resolve("a")).Value}");
+
         Console.ReadKey();
     }
 }
 
 public class InventoryInfo
 {
-    [CollectableAs("a")]
+    [CollectableAs("a")] [ResolvableAs("a")]
     public bool A { get; set; }
+
     [CollectableAs("b")]
     public bool B { get; set; }
     [CollectableAs("c")]

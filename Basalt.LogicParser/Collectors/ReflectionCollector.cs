@@ -44,7 +44,8 @@ public class ReflectionCollector : ICollector
 
     private void UpdateProperty(PropertyInfo property, bool isAddition)
     {
-        switch (Type.GetTypeCode(property.PropertyType))
+        var type = Type.GetTypeCode(property.PropertyType);
+        switch (type)
         {
             case TypeCode.Boolean:
                 UpdateBooleanProperty(property, isAddition);
@@ -52,6 +53,8 @@ public class ReflectionCollector : ICollector
             case TypeCode.Int32:
                 UpdateIntegerProperty(property, isAddition);
                 break;
+            default:
+                throw new LogicParserException($"Variable type {type} is unsupported");
         }
     }
 
