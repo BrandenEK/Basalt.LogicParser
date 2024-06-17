@@ -3,14 +3,17 @@
 namespace Basalt.LogicParser.Resolvers;
 
 /// <inheritdoc/>
-public class StandardResolver(GameInventory inventory) : IResolver
+public abstract class LegacyResolver : IResolver
 {
-    private readonly GameInventory _inventory = inventory;
+    /// <summary>
+    /// Get an object representing the value of the specified variable from the child class
+    /// </summary>
+    protected abstract object GetVariable(string variable);
 
     /// <inheritdoc/>
     public Variable Resolve(string variable)
     {
-        object value = _inventory.GetVariable(variable);
+        object value = GetVariable(variable);
 
         return value switch
         {

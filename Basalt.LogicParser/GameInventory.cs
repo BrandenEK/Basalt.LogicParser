@@ -28,7 +28,7 @@ public class GameInventory
     /// <summary>
     /// Used to resolve a string variable into a token
     /// </summary>
-    public IResolver Resolver { get; set; } = new StandardResolver();
+    public IResolver Resolver { get; set; } = new EmptyResolver();
 
     /// <summary>
     /// Converts the string expression to a logical statement and evaluates it
@@ -39,9 +39,4 @@ public class GameInventory
 
         return string.IsNullOrEmpty(expression) || Calculator.Calculate(Parser.Parse(Formatter.Format(expression), Resolver));
     }
-
-    /// <summary>
-    /// Get an object representing the value of the specified variable from the child class
-    /// </summary>
-    //protected internal abstract object GetVariable(string variable);
 }
