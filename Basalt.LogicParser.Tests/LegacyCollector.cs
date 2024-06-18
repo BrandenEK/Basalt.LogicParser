@@ -2,7 +2,7 @@
 
 namespace Basalt.LogicParser.Tests;
 
-public class TestCollector(TestInventoryInfo info) : ICollector
+public class LegacyCollector(TestInventoryInfo info) : ICollector
 {
     private readonly TestInventoryInfo _info = info;
 

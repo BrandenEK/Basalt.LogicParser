@@ -3,7 +3,7 @@ using Basalt.LogicParser.Resolvers;
 
 namespace Basalt.LogicParser.Tests;
 
-internal class TestResolver(TestInventoryInfo info) : IResolver
+internal class LegacyResolver(TestInventoryInfo info) : IResolver
 {
     private readonly TestInventoryInfo _info = info;
 
