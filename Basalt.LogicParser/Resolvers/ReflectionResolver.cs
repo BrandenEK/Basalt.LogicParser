@@ -20,7 +20,7 @@ public class ReflectionResolver : IResolver
     {
         _info = info;
         _resolvableProperties = info.GetType()
-            .GetProperties()
+            .GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
             .Where(IsValidResolvable)
             .SelectMany(p => GetAttribute(p).Names, (p, name) => new KeyValuePair<string, PropertyInfo>(name, p))
             .ToDictionary(match => match.Key, match => match.Value);
