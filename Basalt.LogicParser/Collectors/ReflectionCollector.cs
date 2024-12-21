@@ -19,7 +19,7 @@ public class ReflectionCollector : ICollector
     {
         _info = info;
         _collectableProperties = info.GetType()
-            .GetProperties()
+            .GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
             .Where(IsValidCollectable)
             .SelectMany(p => GetAttribute(p).Items, (p, item) => new KeyValuePair<string, PropertyInfo>(item, p))
             .GroupBy(match => match.Key)
